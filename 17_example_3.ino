@@ -13,7 +13,7 @@
 #define _DIST_MIN  100.0   // minimum distance 100mm
 #define _DIST_MAX  250.0   // maximum distance 250mm
 
-#define EMA_ALPHA  0.3      // for EMA Filter
+#define EMA_ALPHA  0.5      // for EMA Filter
 
 #define LOOP_INTERVAL 25   // Loop Interval (unit: msec)
 
@@ -61,7 +61,7 @@ if ((dist_raw == 0.0) || (dist_raw > _DIST_MAX)) {
   } // Put range Filter code here (_DIST_MIN ~ _DIST_MAX)
   // and turn on LED if the distance is in the range 
 
-  dist_ema = dist_filtered*0.5+dist_ema_prev*0.5;
+  dist_ema = dist_filtered*EMA_ALPHA+dist_ema_prev*EMA_ALPHA;
 
   dist_ema_prev = dist_ema;
       
